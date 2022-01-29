@@ -5,19 +5,8 @@
 #include <ESPAsyncWebServer.h>
 #include <SPIFFS.h>
 
-class Network {
-    // Replace with your network credentials
-    const char* ssid = "Diamond Home 2";
-    const char* password = "";
- 
-    static String processor(const String& var);
+String processor(const String& var);
 
-public:
-    // Stores LED state
-    static String ledState;
-    String getLEDState();
-    void setLEDState();
-    void init();
-}
+void init_network();
 
-#endif NETWORK_H
+#endif

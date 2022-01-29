@@ -1,8 +1,15 @@
 #include <network.h>
 
+// Stores LED state
+String ledState;
+
+// Replace with your network credentials
+const char* ssid = "Diamond Home 2";
+const char* password = "";
+
 // Replaces placeholder with LED state value
 // This sends data back to the webserver so we can see what happening on the hardware via the web interface
-String Network::processor(const String& var) {
+String processor(const String& var) {
   Serial.println(var);
   if(var == "STATE"){
     if(digitalRead(LED_BUILTIN)){
@@ -17,7 +24,7 @@ String Network::processor(const String& var) {
   return String();
 }
 
-void Network::init() {
+void init_network() {
   // Create AsyncWebServer object on port 80
   AsyncWebServer server(80);
 
@@ -42,6 +49,8 @@ void Network::init() {
   // setting a static IP address so we wont have to guess what IP it has been assigned
   if (!WiFi.config(local_IP, gateway, subnet)) {
     Serial.println("[ ERROR ] STA Failed to configure!");
+  } else {
+    Serial.printf("[ INFO ] Connected to wifi!\n IP: %s", WiFi.localIP().toString().c_str());
   }
 
   // Route for root / web page
