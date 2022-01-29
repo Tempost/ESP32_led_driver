@@ -6,4 +6,6 @@
         * Front end to host control panel
         * send information from the frontend to the hardware
         * Wifi connection
+            * Handle valid connection -- done
+            * Handle Requests
         * Handle large strip
